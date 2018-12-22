@@ -1,0 +1,9 @@
+<% include partials/header.ejs %>
+<h1>Create a New Post</h1>
+
+<form action='/post' method='POST'>
+    <input type='text' name='caption' placeholder='caption'>
+    <input type='text' name='image' placeholder='image url'>
+    <button>Submit!!</button>
+</form>
+<% include partials/footer.ejs %>

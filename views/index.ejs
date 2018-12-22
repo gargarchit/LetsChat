@@ -1,1 +1,15 @@
-<h1> Welcome to LetsChat</h1>
+<% include partials/header.ejs %>
+<div class="container">
+    <header class = "jumbotron">
+        <h1>Welcome to LetsChat</h1>
+        <h2>Posts</h2>
+        <p><a class ="btn btn-secondary btn-lg" href = "/createpost">Create New Post</a></p>
+    </header>
+    <% post.forEach((posts) => { %>
+        <div class="col-md-4 px-0">
+            <h4> Caption: <%= posts.caption %> </h4>
+            <img src =" <%= posts.image %>" class="img-fluid">
+        </div>
+<% }); %>
+</div>
+<% include partials/footer.ejs %>
