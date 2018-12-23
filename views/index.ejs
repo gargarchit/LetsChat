@@ -1,15 +1,24 @@
 <% include partials/header.ejs %>
+
 <div class="container">
     <header class = "jumbotron">
-        <h1>Welcome to LetsChat</h1>
-        <h2>Posts</h2>
-        <p><a class ="btn btn-secondary btn-lg" href = "/createpost">Create New Post</a></p>
-    </header>
-    <% post.forEach((posts) => { %>
-        <div class="col-md-4 px-0">
-            <h4> Caption: <%= posts.caption %> </h4>
-            <img src =" <%= posts.image %>" class="img-fluid">
+        <div class="container">
+            <h1>Welcome to LetsChat</h1>
+            <h2>Posts</h2>
+            <p><a class ="btn btn-secondary btn-lg" href = "/createpost">Create New Post</a></p>
         </div>
-<% }); %>
+    </header>
+    <div class="rows" style="display:flex; frex-wrap: wrap">
+        <% post.forEach((posts) => { %>
+            <div class="col-md-4 col-sm-6">
+                <div  class="thumbnail">
+                    <img src =" <%= posts.image %>" class="img-fluid">
+                </div>
+                <div class="caption">
+                    <h4> <%= posts.caption %> </h4>
+                </div>
+            </div>
+        <% }); %>
+    </div>
 </div>
 <% include partials/footer.ejs %>
