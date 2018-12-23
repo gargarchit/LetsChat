@@ -12,7 +12,7 @@
         <% post.forEach((posts) => { %>
             <div class="col-md-4 col-sm-6">
                 <div  class="thumbnail">
-                    <img src =" <%= posts.image %>" class="img-fluid">
+                    <a href = "/post/<%= posts._id %>"><img src =" <%= posts.image %>" class="img-fluid"></a>
                 </div>
                 <div class="caption">
                     <h4> <%= posts.caption %> </h4>
