@@ -1,0 +1,10 @@
+<% include partials/header.ejs %>
+
+<form action='/post/<%= post._id %>?_method=PUT' method='POST'>
+    <input type='text' name='Post[caption]' value='<%= post.caption %>'>
+    <input type='text' name='Post[image]' value='<%= post.image %>'>
+    <button>Update!!</button>
+</form>
+<a href = "/post/<%= post._id %>">Go back</a>
+
+<% include partials/footer.ejs %>

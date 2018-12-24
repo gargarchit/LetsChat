@@ -1,13 +1,16 @@
 var bodyParser = require("body-parser"),
+    methodOverride = require("method-override"),
     mongoose = require("mongoose"),
     express = require("express"),
     app = express();
 
 //App config
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
+mongoose.set('useFindAndModify', false);
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(methodOverride('_method'));
 
 // Mongoose/Model config
 var postSchema = new mongoose.Schema({
@@ -19,12 +22,13 @@ var postSchema = new mongoose.Schema({
 var post = mongoose.model('post', postSchema);
 
 //RestFul Routes
+
 //landing Page
 app.get('/', (req,res) => {
     res.render('index');
 });
 
-//Post : Show all Post
+//Post : Show all Post Front Page
 app.get('/post', (req,res) => {
     post.find( {}, (err,post) => {
         if(err){
@@ -54,6 +58,7 @@ app.get('/createpost', (req,res) => {
     res.render('createpost');
 });
 
+//Show Post on Click
 app.get('/post/:id', (req,res) => {
     post.findById(req.params.id, (err, foundpost) => {
         if(err) {
@@ -62,6 +67,29 @@ app.get('/post/:id', (req,res) => {
             res.render('show', {post:foundpost});
         }
     });
+});
+
+// Edit Route
+app.get('/post/:id/edit', (req,res) => {
+    post.findById(req.params.id, (err, foundpost) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('edit', {post:foundpost});
+        }
+    });
+});
+
+//Update Route
+app.put('/post/:id', (req,res) => {
+    post.findByIdAndUpdate(req.params.id, req.body.Post, {new: true}, (err, updatedPost) => {
+        if(err) {
+            res.redirect('/post');
+        } else {
+            res.redirect('/post/' + req.params.id);
+        }
+    });
+    
 });
 
 app.listen(process.env.PORT, process.env.IP, () => {
