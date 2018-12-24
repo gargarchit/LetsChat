@@ -1,20 +1,24 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
+var bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    express = require("express"),
+    app = express();
 
+//App config
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
-
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(express.static("public"));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended : true}));
 
+// Mongoose/Model config
 var postSchema = new mongoose.Schema({
    caption: String,
-   image: String
+   image: String,
+   created: {type: Date, default: Date.now}
 });
 
 var post = mongoose.model('post', postSchema);
 
+//RestFul Routes
 //landing Page
 app.get('/', (req,res) => {
     res.render('index');
