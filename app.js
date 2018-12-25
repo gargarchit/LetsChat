@@ -93,7 +93,7 @@ app.put('/post/:id', (req,res) => {
 app.delete('/post/:id', (req,res) => {
     post.findByIdAndRemove(req.params.id, {new: true}, (err, updatedPost) => {
         if(err) {
-            res.redirect('/post');
+            res.redirect('/post/');
         } else {
             res.redirect('/post/');
         }
