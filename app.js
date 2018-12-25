@@ -41,15 +41,16 @@ app.get('/post', (req,res) => {
 
 //Post : Create New Post
 app.post('/post', (req,res) => {
-    var caption = req.body.caption;
-    var image = req.body.image;
-    var newpost = {caption:caption,image:image};
+    var newpost = req.body.Post;
+    // var caption = req.body.caption;
+    // var image = req.body.image;
+    // var newpost = {caption:caption,image:image};
     post.create(newpost, (err,post) => {
-            if(err){
-                console.log(err);
-            } else {
-                res.redirect('/post');
-            }
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect('/post');
+        }
     });
 });
 
@@ -89,7 +90,17 @@ app.put('/post/:id', (req,res) => {
             res.redirect('/post/' + req.params.id);
         }
     });
-    
+});
+
+//Delete Route
+app.delete('/post/:id', (req,res) => {
+    post.findByIdAndRemove(req.params.id, {new: true}, (err, updatedPost) => {
+        if(err) {
+            res.redirect('/post');
+        } else {
+            res.redirect('/post/');
+        }
+    });
 });
 
 app.listen(process.env.PORT, process.env.IP, () => {

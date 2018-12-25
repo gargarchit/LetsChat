@@ -6,5 +6,8 @@
 <div class="caption">
     <h4> <%= post.caption %> </h4>
 </div>
+<form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
+    <button>Delete!!</button>
+</form>
 <a href = "/post/<%= post._id %>/edit">edit</a>
 <% include partials/footer.ejs %>
