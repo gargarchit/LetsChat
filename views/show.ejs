@@ -4,7 +4,7 @@
 </div>
 <img src =" <%= post.image %>" class="img-fluid">
 <div class="caption">
-    <h4> <%= post.caption %> </h4>
+    <h4> <%- post.caption %> </h4>
 </div>
 <form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
     <button>Delete!!</button>

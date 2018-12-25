@@ -1,5 +1,6 @@
 var bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
+    expressSanitizer = require("express-sanitizer"),
     mongoose = require("mongoose"),
     express = require("express"),
     app = express();
@@ -8,6 +9,7 @@ var bodyParser = require("body-parser"),
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(expressSanitizer());
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
@@ -41,6 +43,7 @@ app.get('/post', (req,res) => {
 
 //Post : Create New Post
 app.post('/post', (req,res) => {
+    req.body.Post.caption = req.sanitize(req.body.Post.caption);
     var newpost = req.body.Post;
     post.create(newpost, (err,post) => {
         if(err){
@@ -80,6 +83,7 @@ app.get('/post/:id/edit', (req,res) => {
 
 //Update Route
 app.put('/post/:id', (req,res) => {
+    req.body.Post.caption = req.sanitize(req.body.Post.caption);
     post.findByIdAndUpdate(req.params.id, req.body.Post, {new: true}, (err, updatedPost) => {
         if(err) {
             res.redirect('/post');
