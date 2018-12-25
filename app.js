@@ -42,9 +42,6 @@ app.get('/post', (req,res) => {
 //Post : Create New Post
 app.post('/post', (req,res) => {
     var newpost = req.body.Post;
-    // var caption = req.body.caption;
-    // var image = req.body.image;
-    // var newpost = {caption:caption,image:image};
     post.create(newpost, (err,post) => {
         if(err){
             console.log(err);
