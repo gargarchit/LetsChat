@@ -56,7 +56,7 @@ app.get('/createpost', (req,res) => {
 
 //Show Post on Click
 app.get('/post/:id', (req,res) => {
-    post.findById(req.params.id, (err, foundpost) => {
+    post.findById(req.params.id).populate('comment').exec((err, foundpost) => {
         if(err) {
             console.log(err);
         } else {
@@ -98,6 +98,42 @@ app.delete('/post/:id', (req,res) => {
         }
     });
 });
+
+//---COMMENTS ROUTES-----------------------------(Later will move all commment and post route in *routes*)-----------------
+
+//Create comment : Form to Create comment
+app.get('/post/:id/comments/create', (req,res) => {
+    post.findById(req.params.id, (err, foundpost) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('createcomment', {post:foundpost});
+        }
+    });
+});
+
+//Post : Create New Post
+app.post('/post/:id/comments', (req,res) => {
+    post.findById(req.params.id, (err,post) => {
+        if(err){
+            res.redirect('/post');
+        } else {
+            comment.create(req.body.Comment, (err,post) => {
+                if(err){
+                    console.log(err);
+                } else {
+                    post.comments.push(comment);
+                    post.save();
+                    res.redirect('/post/' + post._id);
+                }
+            });
+        }
+    });
+});
+// Will continue comments later first I will add Authentication (logIn/ Register)
+
+
+
 
 app.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 

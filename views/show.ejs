@@ -1,11 +1,14 @@
 <% include partials/header.ejs %>
+
+<img class="img-responsive" src =" <%= post.image %>">
+<div class="caption">
+    <h4><a><%=post.caption%></a></h4>
+</div>
 <div>
     <p class="font-italic"> <%= post.created %> </p>
 </div>
-<img src =" <%= post.image %>" class="img-fluid">
-<div class="caption">
-    <h4> <%- post.caption %> </h4>
-</div>
+
+<p><a href = "/post/<%= post._id %>">Add New Comment</a></p>
 <form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
     <button>Delete!!</button>
 </form>

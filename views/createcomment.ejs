@@ -1,0 +1,9 @@
+<% include partials/header.ejs %>
+<h1>Add New Comment</h1>
+
+<form action='/post/<%= post._id %>/comments' method='POST'>
+    <input type="text" name="Comment[text]" placeholder="text">
+    <button>Comment!!</button>
+</form>
+<a href = "/post">Go back</a>
+<% include partials/footer.ejs %>
