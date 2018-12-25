@@ -4,9 +4,11 @@ var bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     express = require("express"),
     app = express(),
-    post = require("./models/post");
+    post = require("./models/post"),
+    comment = require("./models/post");
 
 //App config
+
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended : true}));
