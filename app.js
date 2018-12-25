@@ -3,7 +3,8 @@ var bodyParser = require("body-parser"),
     expressSanitizer = require("express-sanitizer"),
     mongoose = require("mongoose"),
     express = require("express"),
-    app = express();
+    app = express(),
+    post = require("./models/post");
 
 //App config
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
@@ -14,14 +15,6 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
-// Mongoose/Model config
-var postSchema = new mongoose.Schema({
-   caption: String,
-   image: String,
-   created: {type: Date, default: Date.now}
-});
-
-var post = mongoose.model('post', postSchema);
 
 //RestFul Routes
 
