@@ -4,11 +4,14 @@ var bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     express = require("express"),
     app = express(),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    session = require("express-session"),
     post = require("./models/post"),
-    comment = require("./models/post");
+    comment = require("./models/post"),
+    user = require("./models/user");
 
 //App config
-
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended : true}));
@@ -17,7 +20,17 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
+app.use(require("express-session")({
+    secret: "Secrets",
+    resave: false,
+    saveUninitialized: false
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
 //RestFul Routes
 
 //landing Page
@@ -112,7 +125,7 @@ app.get('/post/:id/comments/create', (req,res) => {
     });
 });
 
-//Post : Create New Post
+//Comment : Create New Comment
 app.post('/post/:id/comments', (req,res) => {
     post.findById(req.params.id, (err,post) => {
         if(err){
@@ -130,10 +143,26 @@ app.post('/post/:id/comments', (req,res) => {
         }
     });
 });
-// Will continue comments later first I will add Authentication (logIn/ Register)
 
+// Will continue comments later first I will add Authentication (logIn/ SignUp)
 
+// Form SignUp
+app.get('/signup', (req,res) => {
+    res.render('signup');
+});
 
+app.post('/signup', (req,res) => {
+    var newuser = new user({username: req.body.username});
+    user.register(newuser, req.body.password, (err, user) => {
+        if(err){
+            console.log(err.message);
+            return res.render("signup");
+        }
+        passport.authenticate("local")(req, res, () => {
+           res.redirect("/post"); 
+        });
+    });
+});
 
 app.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 
