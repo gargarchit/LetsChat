@@ -31,6 +31,11 @@ app.use(passport.session());
 passport.use(new LocalStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
+
+app.use((req, res, next) => {
+   res.locals.currentuser = req.user;
+   next();
+});
 //RestFul Routes
 
 //landing Page
@@ -50,7 +55,7 @@ app.get('/post', (req,res) => {
 });
 
 //Post : Create New Post
-app.post('/post', (req,res) => {
+app.post('/post',isLoggedIn, (req,res) => {
     req.body.Post.caption = req.sanitize(req.body.Post.caption);
     var newpost = req.body.Post;
     post.create(newpost, (err,post) => {
@@ -63,7 +68,7 @@ app.post('/post', (req,res) => {
 });
 
 //Create Post : Form to Create Post
-app.get('/createpost', (req,res) => {
+app.get('/createpost',isLoggedIn, (req,res) => {
     res.render('createpost');
 });
 
@@ -164,6 +169,31 @@ app.post('/signup', (req,res) => {
     });
 });
 
+// LogIn
+app.get('/login', (req,res) => {
+    res.render('login');
+});
+
+app.post("/login", passport.authenticate("local", {
+        successRedirect: "/post",
+        failureRedirect: "/login"
+    }), (req, res) => {
+});
+
+// Log Out
+app.get("/logout", (req, res) => {
+   req.logout();
+   res.redirect("/post");
+});
+
+//Middleware
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 app.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 
 });
