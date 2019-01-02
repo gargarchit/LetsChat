@@ -1,10 +1,27 @@
 <% include partials/header.ejs %>
-<h1>Create a New Post</h1>
 
-<form action='/post' method='POST'>
-    <input type='text' name='Post[caption]' placeholder='caption'>
-    <input type='text' name='Post[image]' placeholder='image url'>
-    <button>Post!!</button>
-</form>
-<a href = "/post">Go back</a>
+<div class="ui main text container segment">
+    <div class="ui huge header">New Post</div>
+    <form class="ui form" action="/post" method="POST">
+        <div class="field">
+            <label>Caption</label>
+            <div class="ui left icon input">
+                <i class="edit icon"></i>
+                <input type="text" name="Post[caption]" placeholder="Caption">
+            </div> 
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <div class="ui left icon input">
+                <i class="image icon"></i>
+                <input type="text" name="Post[image]" placeholder="Image URL">
+            </div>
+        </div>
+        <button class="ui fluid large teal button">Create Post</button>
+    </form>
+    <div class="ui message">
+        <a href = "/post"><i class="backward icon"></i> Go back</a>
+    </div>
+</div>
+
 <% include partials/footer.ejs %>

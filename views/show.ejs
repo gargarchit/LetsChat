@@ -1,16 +1,30 @@
 <% include partials/header.ejs %>
-
-<img class="img-responsive" src =" <%= post.image %>">
-<div class="caption">
+<div class="ui feed">
+<img src =" <%= post.image %>">
+<div>
     <h4><a><%=post.caption%></a></h4>
 </div>
 <div>
-    <p class="font-italic"> <%= post.created %> </p>
+    <p> <%= post.created %> </p>
+</div>
+<p><a href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a></p>
+
+<div class="ui main text container">
+    <div class="ui top attached segment">
+            <% post.comments.forEach((comment) => { %>
+                <div class="item">
+                    <div class="content">
+                        <a class="header"><%= comment.profile.username %></a>
+                        <a class="item"><%= comment.created.toDateString() %></a><br>
+                        <a class="header"><%= comment.text %></a>
+                    </div>
+                </div>
+            <% }); %>
+    </div>
 </div>
 
-<p><a href = "/post/<%= post._id %>">Add New Comment</a></p>
 <form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
-    <button>Delete!!</button>
+    <button class="ui teal basic button"><i class="trash alternate icon"></i> Delete</button>
 </form>
-<a href = "/post/<%= post._id %>/edit">edit</a>
+<a href = "/post/<%= post._id %>/edit"><i class="edit icon"></i> Edit</a>
 <% include partials/footer.ejs %>

@@ -5,40 +5,24 @@
             LetsChat
         </title>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
         <link href="/app.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class = "navbar-brand" href = "/post">LetsChat</a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/post"><i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <% if(!currentuser){ %>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signup">SignUp</a>
-                        </li>
-                        <% } else { %>
-                        <li class="nav-item">
-                            <li><a class="nav-link" href="#">Hi <%= currentuser.username %>!</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
-                        </li>
-                        <% } %>
-                    </ul>
+        <div class="ui fluid fixed inverted menu">
+            <div class="ui container">
+                <a class="item" href="/post"><i class="paper plane icon"></i></a>
+                <div class="header item"><a href = "/post">LetsChat</a></div>
+                <div class="right menu">
+                    <% if(!currentuser){ %>
+                            <div class="item"><a class="ui inverted button" href="/login"><i class="sign in icon"></i> Login</a></div>
+                            <div class="item"><a class="ui inverted button" href="/signup"><i class="add user icon"></i> SignUp</a></div>
+                    <% } else { %>
+                            <a class="item" href = "/createpost"><i class="edit icon"></i>Create Post</a>
+                            <a class="item" href="#">Hi <%= currentuser.username %>!</a>
+                            <div class="item"><a class="ui inverted button" href="/logout"><i class="sign out icon"></i> Logout</a></div>
+                    <% } %>
                 </div>
             </div>
-        </nav>
-        
+        </div>

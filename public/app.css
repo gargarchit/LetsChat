@@ -1,7 +1,24 @@
-i {
-    font-size: 16px;
-}
 
-.container {
-    margin-top: 2em;
+body {
+      background-color: #DADADA;
+    }
+body > .grid {
+      height: 100%;
+    }
+.image {
+      margin-top: -100px;
+    }
+.column {
+      max-width: 450px;
+    }
+.container.main {
+    margin-top: 7.0em;
+}
+.container.text {
+    margin-top: 3.0em;
+}
+.date {
+	color: #3498db;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
 }

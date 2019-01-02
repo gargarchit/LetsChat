@@ -1,10 +1,27 @@
 <% include partials/header.ejs %>
 
-<form action='/post/<%= post._id %>?_method=PUT' method='POST'>
-    <input type='text' name='Post[caption]' value='<%= post.caption %>'>
-    <input type='text' name='Post[image]' value='<%= post.image %>'>
-    <button>Update!!</button>
-</form>
 <a href = "/post/<%= post._id %>">Go back</a>
-
+<div class="ui main text container segment">
+    <div class="ui huge header">EDIT POST</div>
+    <form class="ui form" action="/post/<%= post._id %>?_method=PUT" method="POST">
+        <div class="field">
+            <label>Caption</label>
+            <div class="ui left icon input">
+                <i class="edit icon"></i>
+                <input type='text' name='Post[caption]' value='<%= post.caption %>'>
+            </div> 
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <div class="ui left icon input">
+                <i class="image icon"></i>
+                <input type='text' name='Post[image]' value='<%= post.image %>'>
+            </div>
+        </div>
+        <button class="ui fluid large teal button">Update</button>
+    </form>
+    <div class="ui message">
+        <a href = "/post/<%= post._id %>"><i class="backward icon"></i> Go back</a>
+    </div>
+</div>
 <% include partials/footer.ejs %>

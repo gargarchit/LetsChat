@@ -1,9 +1,19 @@
 <% include partials/header.ejs %>
-<h1>Add New Comment</h1>
 
-<form action='/post/<%= post._id %>/comments' method='POST'>
-    <input type="text" name="Comment[text]" placeholder="text">
-    <button>Comment!!</button>
-</form>
-<a href = "/post">Go back</a>
+<div class="ui main text container segment">
+    <div class="ui huge header">New Comment</div>
+    <form class="ui form" action="/post/<%= post._id %>/comments"method="POST">
+        <div class="field">
+            <label>Comment</label>
+            <div class="ui left icon input">
+                <i class="edit icon"></i>
+                <input type="text" name="Comment[text]">
+            </div> 
+        </div>
+        <button class="ui fluid large teal button">Create Comment</button>
+    </form>
+    <div class="ui message">
+        <a href = "/post"><i class="backward icon"></i> Go back</a>
+    </div>
+</div>
 <% include partials/footer.ejs %>

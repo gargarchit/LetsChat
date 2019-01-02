@@ -4,8 +4,14 @@ var mongoose = require("mongoose");
 // Comment Schema
 var commentSchema = new mongoose.Schema({
    text: String,
-   profile: String,
-   created: {type: Date, default: Date.now}
+   profile: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user"
+        },
+        username: String
+   },
+  created: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('comment', commentSchema);

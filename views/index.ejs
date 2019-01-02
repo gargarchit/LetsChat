@@ -1,27 +1,30 @@
 <% include partials/header.ejs %>
-
-<div class="container">
-    <header class = "jumbotron">
-        <div class="container">
-            <h1>Welcome to LetsChat</h1>
-            <h2>Posts</h2>
-            <p><a class ="btn btn-secondary btn-lg" href = "/createpost">Create New Post</a></p>
-        </div>
-    </header>
-    <div class="rows">
-        <% post.forEach((posts) => { %>
-            <div class="col-md-4 col-sm-6">
-                <div>
-                    <p class="font-italic"> <%= posts.created.toString() %> </p>
-                </div>
-                <div  class="thumbnail">
-                    <a href = "/post/<%= posts._id %>"><img src =" <%= posts.image %>" class="img-fluid"></a>
-                </div>
-                <div class="caption">
-                    <h4> <%- posts.caption %> </h4>
-                </div>
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui feed">
+            <div class="ui text container">
+                <h1 class="ui inverted header">
+                    Welcome to LetsChat
+                </h1>
             </div>
-        <% }); %>
+        </div>
+    </div>
+</div>
+<div class="ui main text container">
+    <div class="ui top attached segment">
+            <% post.forEach((posts) => { %>
+                <div class="item">
+                    <div class="image">
+                        <a href = "/post/<%= posts._id %>"><img src =" <%= posts.image %>"></a>
+                    </div>
+                    <div class="content">
+                        <a class="header"><%- posts.caption %></a>
+                        <div class="meta">
+                            <span class="cinema"><%= posts.created.toDateString() %></span>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
     </div>
 </div>
 <% include partials/footer.ejs %>
