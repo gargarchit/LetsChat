@@ -18,6 +18,7 @@
                         <a href = "/post/<%= posts._id %>"><img src =" <%= posts.image %>"></a>
                     </div>
                     <div class="content">
+                        <a class="header"><%= posts.profile.username %></a><br>
                         <a class="header"><%- posts.caption %></a>
                         <div class="meta">
                             <span class="cinema"><%= posts.created.toDateString() %></span>

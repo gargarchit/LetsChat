@@ -21,6 +21,9 @@ router.post('/post',middleware.isLoggedIn, (req,res) => {
         if(err){
             console.log(err);
         } else {
+            post.profile.id = req.user._id;
+            post.profile.username = req.user.username;
+            post.save();
             res.redirect('/post');
         }
     });
@@ -43,18 +46,18 @@ router.get('/post/:id', (req,res) => {
 });
 
 // Edit Route
-router.get('/post/:id/edit', (req,res) => {
+router.get('/post/:id/edit', middleware.checkowner ,(req,res) => {
     post.findById(req.params.id, (err, foundpost) => {
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
-            res.render('edit', {post:foundpost});
+            res.render('edit', {post:foundpost});   
         }
     });
 });
 
 //Update Route
-router.put('/post/:id', (req,res) => {
+router.put('/post/:id',middleware.checkowner , (req,res) => {
     req.body.Post.caption = req.sanitize(req.body.Post.caption);
     post.findByIdAndUpdate(req.params.id, req.body.Post, {new: true}, (err, updatedPost) => {
         if(err) {
@@ -66,7 +69,7 @@ router.put('/post/:id', (req,res) => {
 });
 
 //Delete Route
-router.delete('/post/:id', (req,res) => {
+router.delete('/post/:id', middleware.checkowner ,(req,res) => {
     post.findByIdAndRemove(req.params.id, {new: true}, (err, updatedPost) => {
         if(err) {
             res.redirect('/post/');

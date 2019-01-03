@@ -1,6 +1,8 @@
 <% include partials/header.ejs %>
 <div class="ui feed">
 <img src =" <%= post.image %>">
+<div><a class="header"><%= post.profile.username %></a><br>
+</div>
 <div>
     <h4><a><%=post.caption%></a></h4>
 </div>
@@ -8,7 +10,6 @@
     <p> <%= post.created %> </p>
 </div>
 <p><a href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a></p>
-
 <div class="ui main text container">
     <div class="ui top attached segment">
             <% post.comments.forEach((comment) => { %>
@@ -22,9 +23,10 @@
             <% }); %>
     </div>
 </div>
-
+<% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
 <form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
-    <button class="ui teal basic button"><i class="trash alternate icon"></i> Delete</button>
+    <button class="ui red basic button"><i class="trash alternate icon"></i> Delete</button>
 </form>
 <a href = "/post/<%= post._id %>/edit"><i class="edit icon"></i> Edit</a>
+<% } %>
 <% include partials/footer.ejs %>
