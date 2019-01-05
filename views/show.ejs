@@ -31,8 +31,10 @@
       <div class="actions">
         <a class="reply" href = "/post/<%= post._id %>/comments/create">Reply</a>
         <% if(currentuser && comment.profile.id.equals(currentuser._id)){ %>
-        <a class="reply" href = "/post/<%= post._id %>/comments/create">Edit</a>
-        <a class="hide" href = "/post/<%= post._id %>/comments/create">Delete</a>
+        <a class="reply" href = "/post/<%= post._id %>/comments/<%= comment._id %>/edit">Edit</a>
+        <form class="hide" action='/post/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+            <button class="ui red basic button"><i class="trash alternate icon"></i> Delete</button>
+        </form>
         <% } %>
       </div>
     </div>

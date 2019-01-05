@@ -37,38 +37,40 @@ router.post("/post/:id/comments",middleware.isLoggedIn, (req, res) => {
   });
 });
 
-// // Edit Route
-// router.get('/post/:id/comments/:comment_id/edit', middleware.checkowner ,(req,res) => {
-//     post.findById(req.params.id, (err, foundcomment) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.render('editcomment', {post_id: req.params.id, comment: foundcomment});   
-//         }
-//     });
-// });
+// Edit Route
+router.get('/post/:id/comments/:commentid/edit', middleware.checkownercomment ,(req,res) => {
+    comment.findById(req.params.commentid, (err, foundcomment) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('editcomment', {post_id: req.params.id, comment: foundcomment});   
+        }
+    });
+});
 
-// //Update Route
-// router.put('/post/:id',middleware.checkowner , (req,res) => {
-//     req.body.Post.caption = req.sanitize(req.body.Post.caption);
-//     post.findByIdAndUpdate(req.params.id, req.body.Post, {new: true}, (err, updatedPost) => {
-//         if(err) {
-//             res.redirect('/post');
-//         } else {
-//             res.redirect('/post/' + req.params.id);
-//         }
-//     });
-// });
 
-// //Delete Route
-// router.delete('/post/:id', middleware.checkowner ,(req,res) => {
-//     post.findByIdAndRemove(req.params.id, {new: true}, (err, updatedPost) => {
-//         if(err) {
-//             res.redirect('/post/');
-//         } else {
-//             res.redirect('/post/');
-//         }
-//     });
-// });
+//Update Route
+router.put('/post/:id/comments/:commentid/', middleware.checkownercomment , (req,res) => {
+    req.body.Comment.text = req.sanitize(req.body.Comment.text);
+    comment.findByIdAndUpdate(req.params.commentid, req.body.Comment, {new: true}, (err, updatedPost) => {
+        if(err) {
+            res.redirect('/editcomment');
+        } else {
+            res.redirect('/post/' + req.params.id);
+        }
+    });
+});
+
+
+//Delete Route
+router.delete('/post/:id/comments/:commentid/', middleware.checkownercomment ,(req,res) => {
+    comment.findByIdAndRemove(req.params.commentid, {new: true}, (err, updatedPost) => {
+        if(err) {
+            res.redirect('back');
+        } else {
+            res.redirect('/post/' + req.params.id);
+        }
+    });
+});
 
 module.exports = router;
