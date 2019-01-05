@@ -18,10 +18,13 @@ router.post('/signup', (req,res) => {
     user.register(newuser, req.body.password, (err, user) => {
         if(err){
             console.log(err.message);
-            return res.render("signup");
+            res.render("signup");
         }
         passport.authenticate("local")(req, res, () => {
-           res.redirect("/post"); 
+            newuser.name = req.body.name;
+            newuser.email = req.body.email;
+            newuser.save();
+            res.redirect("/post"); 
         });
     });
 });

@@ -10,22 +10,36 @@
         </div>
     </div>
 </div>
-<div class="ui main text container">
-    <div class="ui top attached segment">
-            <% post.forEach((posts) => { %>
-                <div class="item">
-                    <div class="image">
-                        <a href = "/post/<%= posts._id %>"><img src =" <%= posts.image %>"></a>
-                    </div>
-                    <div class="content">
-                        <a class="header"><%= posts.profile.username %></a><br>
-                        <a class="header"><%- posts.caption %></a>
-                        <div class="meta">
-                            <span class="cinema"><%= posts.created.toDateString() %></span>
-                        </div>
-                    </div>
-                </div>
-            <% }); %>
-    </div>
+<div class="pusher">
+  <div class="ui container">
+    <div class="ui piled segment">
+      <div class="ui divided items">
+        <% post.forEach((posts) => { %>
+        <div class="item"> 
+          <div class="image">
+            <a href = "/post/<%= posts._id %>"><img src="<%= posts.image %>"></a>
+          </div>
+          <!--<a class="avatar">-->
+          <!--	<img src="/images/avatar/small/matt.jpg">-->
+          <!--</a>-->
+				  <div class="content">
+				    <a class="header"><%= posts.profile.name %></a>
+				    <div class="meta">@ <%= posts.profile.username %></div>
+				    <div class="meta">
+				      <b><%= posts.created.toDateString() %></b> 9:00 am
+				    </div>
+			      <div class="description">
+			        <p><%- posts.caption %></p>
+			      </div>
+			      <div class="extra">
+			        <div class="ui label"><i class="thumbs up icon"></i> Like</div>
+			        <div class="ui label"><i class="comments icon"></i> Comment</div>
+			      </div>
+				  </div>
+				</div>
+				<% }); %>
+			</div>
+		</div>
+	</div>
 </div>
 <% include partials/footer.ejs %>

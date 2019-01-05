@@ -1,28 +1,45 @@
 <% include partials/header.ejs %>
+
+
+
 <div class="ui feed">
 <img src =" <%= post.image %>">
-<div><a class="header"><%= post.profile.username %></a><br>
+<div><a class="header"><%= post.profile.name %></a></div>
+<div class="meta">@ <%= post.profile.username %></div><br>
 </div>
 <div>
-    <h4><a><%=post.caption%></a></h4>
+    <h4><a><%-post.caption%></a></h4>
 </div>
 <div>
     <p> <%= post.created %> </p>
 </div>
 <p><a href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a></p>
-<div class="ui main text container">
-    <div class="ui top attached segment">
-            <% post.comments.forEach((comment) => { %>
-                <div class="item">
-                    <div class="content">
-                        <a class="header"><%= comment.profile.username %></a>
-                        <a class="item"><%= comment.created.toDateString() %></a><br>
-                        <a class="header"><%= comment.text %></a>
-                    </div>
-                </div>
-            <% }); %>
+<div class="ui comments">
+  <div class="comment">
+    <% post.comments.forEach((comment) => { %>
+    <!--<a class="avatar">-->
+    <!--  <img src="/images/avatar/small/joe.jpg">-->
+    <!--</a>-->
+    <div class="content">
+      <a class="author"><%= comment.profile.name %></a>
+      <div class="metadata">
+        <div class="date"><%= comment.created.toDateString() %></div>
+      </div>
+      <div class="text">
+        <p><%= comment.text %></p>
+      </div>
+      <div class="actions">
+        <a class="reply" href = "/post/<%= post._id %>/comments/create">Reply</a>
+        <% if(currentuser && comment.profile.id.equals(currentuser._id)){ %>
+        <a class="reply" href = "/post/<%= post._id %>/comments/create">Edit</a>
+        <a class="hide" href = "/post/<%= post._id %>/comments/create">Delete</a>
+        <% } %>
+      </div>
     </div>
+    <% }); %>
+  </div>
 </div>
+
 <% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
 <form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
     <button class="ui red basic button"><i class="trash alternate icon"></i> Delete</button>

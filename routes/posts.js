@@ -23,6 +23,7 @@ router.post('/post',middleware.isLoggedIn, (req,res) => {
         } else {
             post.profile.id = req.user._id;
             post.profile.username = req.user.username;
+            post.profile.name = req.user.name;
             post.save();
             res.redirect('/post');
         }

@@ -12,13 +12,18 @@ body > .grid {
       max-width: 450px;
     }
 .container.main {
-    margin-top: 7.0em;
+    margin: auto;
+    position: relative;
+    top: 25%;
 }
 .container.text {
     margin-top: 3.0em;
 }
-.date {
-	color: #3498db;
-	text-transform: uppercase;
-	letter-spacing: 0.2rem;
+img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 100%;
 }
+

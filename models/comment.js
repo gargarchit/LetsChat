@@ -9,8 +9,10 @@ var commentSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "user"
         },
+        name : String,
         username: String
    },
+   
   created: {type: Date, default: Date.now}
 });
 
