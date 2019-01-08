@@ -30,6 +30,7 @@ router.post("/post/:id/comments",middleware.isLoggedIn, (req, res) => {
                 com.save();
                 Post.comments.push(com);
                 Post.save();
+                req.flash("success", "Comment Added!");
                 res.redirect('/post/' + Post._id);
           }
         });
@@ -56,6 +57,7 @@ router.put('/post/:id/comments/:commentid/', middleware.checkownercomment , (req
         if(err) {
             res.redirect('/editcomment');
         } else {
+            req.flash("success", "Comment Updated!");
             res.redirect('/post/' + req.params.id);
         }
     });
@@ -68,6 +70,7 @@ router.delete('/post/:id/comments/:commentid/', middleware.checkownercomment ,(r
         if(err) {
             res.redirect('back');
         } else {
+            req.flash("success", "Comment deleted!");
             res.redirect('/post/' + req.params.id);
         }
     });

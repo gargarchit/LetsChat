@@ -18,7 +18,7 @@ router.post('/signup', (req,res) => {
     var newuser = new user({username: req.body.username});
     user.register(newuser, req.body.password, (err, user) => {
         if(err){
-            console.log(err.message);
+            req.flash("error", err.message);
             res.redirect("/signup");
         } else {
             passport.authenticate("local")(req, res, () => {
@@ -45,7 +45,8 @@ router.post("/login", passport.authenticate("local", {
 // Log Out
 router.get("/logout", (req, res) => {
    req.logout();
-   res.redirect("/post");
+   req.flash("success", "You have successfully logged out!");
+   res.redirect("/login");
 });
 
 // Profile
@@ -53,6 +54,7 @@ router.get('/profile',middleware.isLoggedIn, function(req, res, next) {
     var user = req.user;
     res.render('profile', {user: user});
 });
+
 
 
 module.exports = router;

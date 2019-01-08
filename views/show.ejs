@@ -1,7 +1,5 @@
 <% include partials/header.ejs %>
-<style>body{
-    margin-top:70px;
-}</style>
+
 <div class="container">
   <div class="col-md-9">
     <div class="thumbnail">
@@ -9,9 +7,8 @@
       <div class="caption-full">
       <h4 class="pull-right"><%= post.created %></h4>
       <h4><a><%-post.caption%></a></h4>
-      <p>@ <%= post.profile.username %></p>
       <p>
-        <em>By <%= post.profile.name %></em>
+        By <%= post.profile.name %><em> @ <%= post.profile.username %></em>
       </p>
       <% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
         <a href="/post/<%= post._id %>/edit" class="btn btn-xs btn-info">EDIT</a>
@@ -38,10 +35,11 @@
                   <button class="btn btn-xs btn-danger"><i class="trash alternate icon"></i>DELETE</button>
                   <a href="/post/<%= post._id %>/comments/<%= comment._id %>/edit" class="btn btn-xs btn-info">EDIT</a>
                 </form>
-                <% } %> 
+                <% } %>
               </div>
             </div>
           </div>
+          <hr>
       <% }); %>
     </div>
   </div>

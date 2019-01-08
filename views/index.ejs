@@ -1,45 +1,29 @@
 <% include partials/header.ejs %>
-<div class="pusher">
-    <div class="ui inverted vertical masthead center aligned segment">
-        <div class="ui feed">
-            <div class="ui text container">
-                <h1 class="ui inverted header">
-                    Welcome to LetsChat
-                </h1>
-            </div>
-        </div>
+<div class="jumbotron" style="margin-top: -60px;">
+    <div class="container">
+      <h1 class="display-3">Welcome to LetsChat</h1>
+      <h3 class="display-4">Feed Page</h3>
     </div>
 </div>
-<div class="pusher">
-  <div class="ui container">
-    <div class="ui piled segment">
-      <div class="ui divided items">
+<div class="container">
+    <div class="col-md-9">
         <% post.forEach((posts) => { %>
-        <div class="item"> 
-          <div class="image">
-            <a href = "/post/<%= posts._id %>"><img src="<%= posts.image %>"></a>
-          </div>
-          <!--<a class="avatar">-->
-          <!--	<img src="/images/avatar/small/matt.jpg">-->
-          <!--</a>-->
-				  <div class="content">
-				    <a class="header"><%= posts.profile.name %></a>
-				    <div class="meta">@ <%= posts.profile.username %></div>
-				    <div class="meta">
-				      <b><%= posts.created.toDateString() %></b> <%= posts.created.getTime() %>
-				    </div>
-			      <div class="description">
-			        <p><%- posts.caption %></p>
-			      </div>
-			      <div class="extra">
-			        <div class="ui label"><a><i class="heart icon"></i> Like</a></div>
-			        <div class="ui label"><a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a></div>
-			      </div>
-				  </div>
-				</div>
-				<% }); %>
-			</div>
-		</div>
-	</div>
+        <div class="thumbnail">
+            <a href = "/post/<%= posts._id %>"><img class="img-responsive" src="<%- posts.image %>"></a>
+            <div class="caption-full">
+                <h4 class="pull-right"><%= posts.created %></h4>
+                <h2><a><%-posts.caption%></a></h2>
+                <p>
+                    By <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em>
+                </p>
+                <a><i class="heart icon"></i></a>
+                <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+            </div>
+            <hr class="mb-4">
+            <hr class="mb-4">
+        </div>
+        <% }); %>
+    </div>
 </div>
+
 <% include partials/footer.ejs %>

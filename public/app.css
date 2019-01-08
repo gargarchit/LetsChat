@@ -1,6 +1,7 @@
 
 body {
       background-color: #DADADA;
+      margin-top:100px;
 }
 body > .grid {
       height: 100%;
@@ -26,8 +27,34 @@ img {
     display: block;
     width: 100%;
 }
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
 #delete-form {
     display: inline;
 }
 
+
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
 

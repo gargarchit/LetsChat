@@ -15,6 +15,7 @@
     <body>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <span></span>
             <a class="navbar-brand" href="/post"><i class="paper plane icon"></i>LetsChat</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,3 +38,11 @@
             </div>
         </nav>
         <!--Navbar End -->
+        <div class="container">
+            <% if(error && error.length > 0) { %>
+                <div class="alert alert-danger"><p><%=error %></p></div>
+            <% } %>
+            <% if(success && success.length > 0) { %>
+                <div class="alert alert-success"><p><%= success %></p></div>
+            <% } %>
+        </div>
