@@ -26,14 +26,14 @@
 				    <a class="header"><%= posts.profile.name %></a>
 				    <div class="meta">@ <%= posts.profile.username %></div>
 				    <div class="meta">
-				      <b><%= posts.created.toDateString() %></b> 9:00 am
+				      <b><%= posts.created.toDateString() %></b> <%= posts.created.getTime() %>
 				    </div>
 			      <div class="description">
 			        <p><%- posts.caption %></p>
 			      </div>
 			      <div class="extra">
-			        <div class="ui label"><i class="thumbs up icon"></i> Like</div>
-			        <div class="ui label"><i class="comments icon"></i> Comment</div>
+			        <div class="ui label"><a><i class="heart icon"></i> Like</a></div>
+			        <div class="ui label"><a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a></div>
 			      </div>
 				  </div>
 				</div>

@@ -1,7 +1,8 @@
 var express = require("express"),
     router  = express.Router(),
     passport = require("passport"),
-    user = require("../models/user");
+    user = require("../models/user"),
+    middleware = require("../middleware");
 
 //landing Page
 router.get('/', (req,res) => {
@@ -46,5 +47,12 @@ router.get("/logout", (req, res) => {
    req.logout();
    res.redirect("/post");
 });
+
+// Profile
+router.get('/profile',middleware.isLoggedIn, function(req, res, next) {
+    var user = req.user;
+    res.render('profile', {user: user});
+});
+
 
 module.exports = router;

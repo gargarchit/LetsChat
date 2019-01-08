@@ -1,51 +1,50 @@
 <% include partials/header.ejs %>
-
-
-
-<div class="ui feed">
-<img src =" <%= post.image %>">
-<div><a class="header"><%= post.profile.name %></a></div>
-<div class="meta">@ <%= post.profile.username %></div><br>
-</div>
-<div>
-    <h4><a><%-post.caption%></a></h4>
-</div>
-<div>
-    <p> <%= post.created %> </p>
-</div>
-<p><a href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a></p>
-<div class="ui comments">
-  <div class="comment">
-    <% post.comments.forEach((comment) => { %>
-    <!--<a class="avatar">-->
-    <!--  <img src="/images/avatar/small/joe.jpg">-->
-    <!--</a>-->
-    <div class="content">
-      <a class="author"><%= comment.profile.name %></a>
-      <div class="metadata">
-        <div class="date"><%= comment.created.toDateString() %></div>
-      </div>
-      <div class="text">
-        <p><%= comment.text %></p>
-      </div>
-      <div class="actions">
-        <a class="reply" href = "/post/<%= post._id %>/comments/create">Reply</a>
-        <% if(currentuser && comment.profile.id.equals(currentuser._id)){ %>
-        <a class="reply" href = "/post/<%= post._id %>/comments/<%= comment._id %>/edit">Edit</a>
-        <form class="hide" action='/post/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
-            <button class="ui red basic button"><i class="trash alternate icon"></i> Delete</button>
+<style>body{
+    margin-top:70px;
+}</style>
+<div class="container">
+  <div class="col-md-9">
+    <div class="thumbnail">
+      <img class="img-responsive" src="<%= post.image %>">
+      <div class="caption-full">
+      <h4 class="pull-right"><%= post.created %></h4>
+      <h4><a><%-post.caption%></a></h4>
+      <p>@ <%= post.profile.username %></p>
+      <p>
+        <em>By <%= post.profile.name %></em>
+      </p>
+      <% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
+        <a href="/post/<%= post._id %>/edit" class="btn btn-xs btn-info">EDIT</a>
+        <form id="delete-form" action="/post/<%= post._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-xs btn-danger"><i class="trash alternate icon"></i>Delete</button>
         </form>
-        <% } %>
+      <% } %> 
       </div>
     </div>
-    <% }); %>
+    <div class="well">
+      <div class="text-right">
+          <a class="btn btn-success" href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a>
+      </div>
+      <hr>
+      <% post.comments.forEach((comment) => { %>
+        <div class="row">
+          <div class="col-md-12">
+            <strong> <%= comment.profile.name %> </strong>
+            <span class="pull-right"><%= comment.created.toDateString() %></span>
+              <div>
+                <%= comment.text %>
+                <% if(currentuser && comment.profile.id.equals(currentuser._id)){ %>
+                <form style="display: inline" class="pull-right" action="/post/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                  <button class="btn btn-xs btn-danger"><i class="trash alternate icon"></i>DELETE</button>
+                  <a href="/post/<%= post._id %>/comments/<%= comment._id %>/edit" class="btn btn-xs btn-info">EDIT</a>
+                </form>
+                <% } %> 
+              </div>
+            </div>
+          </div>
+      <% }); %>
+    </div>
   </div>
 </div>
 
-<% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
-<form action='/post/<%= post._id %>?_method=DELETE' method='POST'>
-    <button class="ui red basic button"><i class="trash alternate icon"></i> Delete</button>
-</form>
-<a href = "/post/<%= post._id %>/edit"><i class="edit icon"></i> Edit</a>
-<% } %>
 <% include partials/footer.ejs %>

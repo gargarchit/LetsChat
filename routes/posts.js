@@ -80,4 +80,15 @@ router.delete('/post/:id', middleware.checkowner ,(req,res) => {
     });
 });
 
+// router.post("likepost");
+
+// likepost: (req, res, next) => {
+//         post.findById(req.body.post_id).then((post)=> {
+//             return post.likes().then(()=>{
+//                 return res.json({msg: "Done"});
+//             });
+//         }).catch(next);
+// },
+
+
 module.exports = router;

@@ -1,47 +1,83 @@
 <% include partials/header.ejs %>
-
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
-        <i class="add user icon"></i> Create an account
-      </div>
-    </h2>
-    <form class="ui large form" action='/signup' method='POST'>
-      <div class="ui stacked segment">
-        <h4 class="ui dividing header">Account Info</h4>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="name" placeholder="Full Name">
+<style>body{
+    margin-top:100px;
+}</style>
+<!--Sign Up FORM-->
+<div class="container">
+  <div class="py-5 text-center">
+    <i class="add user icon"></i>
+    <h2>Create an account</h2>
+    <p class="lead">CONNECTIONS - The FUTURE ASSETS</p>
+  </div>
+  <hr class="mb-4">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="mb-3 text-center">Account Info</h4>
+      <hr class="mb-4">
+      <form class="needs-validation"  action='/signup' method='POST' novalidate>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName"><i class="user icon"></i>Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+            <div class="invalid-feedback">
+              Valid Name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              Your username is required.
+            </div>
           </div>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="email" placeholder="Email">
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback">
+              Please enter a valid email address
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+          <label for="inputPassword5">Password</label>
+          <input type="password" id="inputPassword5" class="form-control" name="password" aria-describedby="passwordHelpBlock">
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+          </small>
+          <div class="invalid-feedback">
+              Please enter valid Password.
+            </div>
           </div>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="username" placeholder="Username">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
-          </div>
-        </div>
-        <button class="ui fluid large teal button" type="submit">Sign Up</button>
-      </div>
-
-    </form>
-
-    <div class="ui message">
-      Already have an account? <a href="/login">Login</a>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">SignUp</button>
+      </form>
     </div>
   </div>
-</div>
+  
+<!--Form Validation  -->
+<script>
+(function () {
+  'use strict'
+
+  window.addEventListener('load', function () {
+    var forms = document.getElementsByClassName('needs-validation')
+    Array.prototype.filter.call(forms, function (form) {
+      form.addEventListener('submit', function (event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  }, false)
+}())
+</script>
 <% include partials/footer.ejs %>

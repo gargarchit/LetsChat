@@ -1,7 +1,7 @@
 
 body {
       background-color: #DADADA;
-    }
+}
 body > .grid {
       height: 100%;
     }
@@ -26,4 +26,8 @@ img {
     display: block;
     width: 100%;
 }
+#delete-form {
+    display: inline;
+}
+
 

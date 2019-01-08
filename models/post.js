@@ -6,6 +6,7 @@ var postSchema = new mongoose.Schema({
    caption: String,
    image: String,
    created: {type: Date, default: Date.now},
+   likes : Number,
    profile: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
@@ -21,4 +22,8 @@ var postSchema = new mongoose.Schema({
       }],
 });
 
+postSchema.methods.clap = function() {
+    this.likes++
+    return this.save()
+}
 module.exports = mongoose.model('post', postSchema);
