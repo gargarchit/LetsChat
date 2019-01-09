@@ -11,7 +11,7 @@
         <div class="thumbnail">
             <a href = "/post/<%= posts._id %>"><img class="img-responsive" src="<%- posts.image %>"></a>
             <div class="caption-full">
-                <h4 class="pull-right"><%= posts.created %></h4>
+                <h4 class="pull-right"><%= moment(posts.created).fromNow() %></h4>
                 <h2><a><%-posts.caption%></a></h2>
                 <p>
                     By <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em>
