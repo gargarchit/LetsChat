@@ -38,8 +38,9 @@ router.get('/createpost',middleware.isLoggedIn, (req,res) => {
 //Show Post on Click
 router.get('/post/:id', (req,res) => {
     post.findById(req.params.id).populate('comments').exec((err, foundpost) => {
-        if(err) {
-            console.log(err);
+        if(err || !foundpost) {
+            req.flash("error", "Post NOT FOUND");
+            res.redirect("/post");
         } else {
             res.render('show', {post:foundpost});
         }

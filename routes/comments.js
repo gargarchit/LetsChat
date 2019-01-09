@@ -40,11 +40,18 @@ router.post("/post/:id/comments",middleware.isLoggedIn, (req, res) => {
 
 // Edit Route
 router.get('/post/:id/comments/:commentid/edit', middleware.checkownercomment ,(req,res) => {
-    comment.findById(req.params.commentid, (err, foundcomment) => {
-        if (err) {
-            console.log(err);
+    post.findById(req.params.id, (err, foundpost) => {
+        if(err || !foundpost) {
+            req.flash("error", "POST NOT FOUND");
+            res.redirect("/post");
         } else {
-            res.render('editcomment', {post_id: req.params.id, comment: foundcomment});   
+            comment.findById(req.params.commentid, (err, foundcomment) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('editcomment', {post_id: req.params.id, comment: foundcomment});   
+                }
+            });
         }
     });
 });

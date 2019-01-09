@@ -4,10 +4,10 @@ var express = require("express"),
     user = require("../models/user"),
     middleware = require("../middleware");
 
-//landing Page
-router.get('/', (req,res) => {
-    res.render('index');
-});
+// //landing Page
+// router.get('/', (req,res) => {
+//     res.render('index');
+// });
 
 // Form SignUp
 router.get('/signup', (req,res) => {

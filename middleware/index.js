@@ -7,6 +7,7 @@ var middlewareObj = {};
 middlewareObj.isLoggedIn = function isLoggedIn(req, res, next){
         if(req.isAuthenticated()){
             return next();
+            
         }
         req.flash("error", "Please Login !!");
         res.redirect("/login");
@@ -15,9 +16,9 @@ middlewareObj.isLoggedIn = function isLoggedIn(req, res, next){
 middlewareObj.checkowner = function checkowner(req,res,next) {
     if(req.isAuthenticated()){
         post.findById(req.params.id, (err, foundpost) => {
-            if(err) {
+            if(err || !foundpost) {
                 req.flash("error", "NO POST FOUND");
-                res.redirect('back');
+                res.redirect('/post');
             } else {
                 if(foundpost.profile.id.equals(req.user._id)){
                     return next();
@@ -35,9 +36,9 @@ middlewareObj.checkowner = function checkowner(req,res,next) {
 middlewareObj.checkownercomment = function(req, res, next){
         if(req.isAuthenticated()){
             comment.findById(req.params.commentid, function(err, com){
-                if(err) {
+                if(err || !com) {
                 req.flash("error", "NO Comment FOUND");
-                res.redirect('back');
+                res.redirect('/post');
             } else {
                 if(com.profile.id.equals(req.user._id)){
                     return next();
