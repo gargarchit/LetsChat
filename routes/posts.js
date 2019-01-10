@@ -6,7 +6,7 @@ var express = require("express"),
 router.get('/post', (req,res) => {
     post.find( {}, (err,post) => {
         if(err){
-            console.log(err);
+            res.render("error");
         } else {
             res.render("index", {post:post});
         }
@@ -19,7 +19,7 @@ router.post('/post',middleware.isLoggedIn, (req,res) => {
     var newpost = req.body.Post;
     post.create(newpost, (err,post) => {
         if(err){
-            console.log(err);
+            res.render("error");
         } else {
             post.profile.id = req.user._id;
             post.profile.username = req.user.username;
@@ -39,8 +39,7 @@ router.get('/createpost',middleware.isLoggedIn, (req,res) => {
 router.get('/post/:id', (req,res) => {
     post.findById(req.params.id).populate('comments').exec((err, foundpost) => {
         if(err || !foundpost) {
-            req.flash("error", "Post NOT FOUND");
-            res.redirect("/post");
+            res.render("error");
         } else {
             res.render('show', {post:foundpost});
         }
@@ -51,7 +50,7 @@ router.get('/post/:id', (req,res) => {
 router.get('/post/:id/edit', middleware.checkowner ,(req,res) => {
     post.findById(req.params.id, (err, foundpost) => {
         if (err) {
-            console.log(err);
+            res.render("error");
         } else {
             res.render('edit', {post:foundpost});   
         }

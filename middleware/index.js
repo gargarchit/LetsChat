@@ -17,8 +17,7 @@ middlewareObj.checkowner = function checkowner(req,res,next) {
     if(req.isAuthenticated()){
         post.findById(req.params.id, (err, foundpost) => {
             if(err || !foundpost) {
-                req.flash("error", "NO POST FOUND");
-                res.redirect('/post');
+                res.render("error");
             } else {
                 if(foundpost.profile.id.equals(req.user._id)){
                     return next();
@@ -37,8 +36,7 @@ middlewareObj.checkownercomment = function(req, res, next){
         if(req.isAuthenticated()){
             comment.findById(req.params.commentid, function(err, com){
                 if(err || !com) {
-                req.flash("error", "NO Comment FOUND");
-                res.redirect('/post');
+                res.render("error");
             } else {
                 if(com.profile.id.equals(req.user._id)){
                     return next();

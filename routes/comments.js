@@ -7,7 +7,7 @@ var  express = require("express"),
 router.get("/post/:id/comments/create",middleware.isLoggedIn, (req, res) => {
     post.findById(req.params.id, (err, post) => {
         if(err){
-            console.log(err);
+            res.render("error");
         } else {
              res.render('createcomment', {post:post});
         }
@@ -18,11 +18,11 @@ router.get("/post/:id/comments/create",middleware.isLoggedIn, (req, res) => {
 router.post("/post/:id/comments",middleware.isLoggedIn, (req, res) => {
   post.findById(req.params.id, (err, Post) => {
       if(err){
-          res.redirect("/post");
+          res.render("error");
       } else {
         comment.create(req.body.Comment, (err, com) => {
           if(err){
-              console.log(err);
+              res.render("error");
           } else {
                 com.profile.id = req.user._id;
                 com.profile.username = req.user.username;
@@ -42,12 +42,11 @@ router.post("/post/:id/comments",middleware.isLoggedIn, (req, res) => {
 router.get('/post/:id/comments/:commentid/edit', middleware.checkownercomment ,(req,res) => {
     post.findById(req.params.id, (err, foundpost) => {
         if(err || !foundpost) {
-            req.flash("error", "POST NOT FOUND");
-            res.redirect("/post");
+            res.render("error");
         } else {
             comment.findById(req.params.commentid, (err, foundcomment) => {
                 if (err) {
-                    console.log(err);
+                    res.render("error");
                 } else {
                     res.render('editcomment', {post_id: req.params.id, comment: foundcomment});   
                 }
