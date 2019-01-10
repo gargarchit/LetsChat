@@ -14,7 +14,7 @@
                 <h4 class="pull-right"><%= moment(posts.created).fromNow() %></h4>
                 <h2><a><%-posts.caption%></a></h2>
                 <p>
-                    By <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em>
+                    By<a href = "user/<%= posts.profile.id%>"> <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em></a>
                 </p>
                 <a><i class="heart icon"></i></a>
                 <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>

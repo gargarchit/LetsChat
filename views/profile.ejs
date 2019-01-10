@@ -1,5 +1,8 @@
 <% include partials/header.ejs %>
 
+<style>body{
+    margin-top:70px;
+}</style>
 <div class="container">
    <div class="row">
       <div class="col-lg-4">
@@ -49,7 +52,7 @@
             <div class="card-body">
                <ul class="nav nav-pills nav-pills-primary nav-justified">
                   <li class="nav-item">
-                     <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
+                     <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">TIMELINE</span></a>
                   </li>
                   <li class="nav-item">
                      <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit Profile</span></a>
@@ -57,24 +60,22 @@
                </ul>
                <div class="tab-content p-3">
                   <div class="tab-pane active show" id="profile">
-                     <h5 class="mb-3">User Profile</h5>
+                     <h5 class="mb-3">Posts</h5>
                      <div class="row">
-                        <div class="col-md-6">
-                           <h6>About</h6>
-                           <p>
-                              <%=user.about%>
-                           </p>
-                           <h6>Address</h6>
-                           <p>
-                              <%=user.address%>
-                           </p>
-                        </div>
-                        <div class="col-md-6">
- 
- 
-                        </div>
                         <div class="col-md-12">
-  
+                        <% post.forEach((posts) => { %>
+                           <div class="thumbnail">
+                              <a href = "/post/<%= posts._id %>"><img class="img-responsive" src="<%- posts.image %>"></a>
+                              <div class="caption-full">
+                                  <h4 class="pull-right"><%= moment(posts.created).fromNow() %></h4>
+                                  <h2><a><%-posts.caption%></a></h2>
+                                  <a><i class="heart icon"></i></a>
+                                  <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                              </div>
+                              <hr class="mb-4">
+                              <hr class="mb-4">
+                           </div>
+                        <% }); %>
                         </div>
                      </div>
                   </div>

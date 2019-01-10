@@ -1,6 +1,12 @@
 <!-- Header -->
 <html>
-    <head>
+    <head lang="en">
+        <meta charset="utf-8">
+		<meta name="description" content="LetsChat Social Networking Site">
+        <meta name="keywords" content="NodeJS, MongoDB, BootStrap, Social Sites, Letschat">
+        <meta name="author" content="Archit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="refresh" content="60">
         <title>
             LetsChat
         </title>
@@ -32,7 +38,7 @@
                 <% } else { %>
                 <a class="btn btn-dark" href="#"><i class="rocketchat icon"></i>Chat Room</a>
                 <a class="btn btn-dark" href = "/createpost"><i class="edit icon"></i>Create Post</a>
-                <a class="btn btn-dark" href="/profile">Hi <%= currentuser.name %>!</a>
+                <a class="btn btn-dark" href="../user/<%=currentuser._id%>">Hi <%= currentuser.name %>!</a>
                 <a class="btn btn-dark" href="/logout"><i class="sign out icon"></i> Logout</a>
                 <% } %>               
             </div>

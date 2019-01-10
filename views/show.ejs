@@ -8,7 +8,7 @@
       <h4 class="pull-right"><%= moment(post.created).fromNow() %></h4>
       <h4><a><%-post.caption%></a></h4>
       <p>
-        By <%= post.profile.name %><em> @ <%= post.profile.username %></em>
+        By <a href = "../user/<%= post.profile.id%>"><%= post.profile.name %><em> @ <%= post.profile.username %></em></a>
       </p>
       <% if(currentuser && post.profile.id.equals(currentuser._id)){ %>
         <a href="/post/<%= post._id %>/edit" class="btn btn-xs btn-info">EDIT</a>
@@ -26,7 +26,7 @@
       <% post.comments.forEach((comment) => { %>
         <div class="row">
           <div class="col-md-12">
-            <strong> <%= comment.profile.name %> </strong>
+            <strong> <a href = "../user/<%= comment.profile.id%>"><%= comment.profile.name %></a> </strong>
             <span class="pull-right"><%= moment(comment.created).fromNow() %></span>
               <div>
                 <%= comment.text %>

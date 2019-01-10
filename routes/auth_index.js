@@ -2,6 +2,7 @@ var express = require("express"),
     router  = express.Router(),
     passport = require("passport"),
     user = require("../models/user"),
+    post = require("../models/post"),
     middleware = require("../middleware");
 
 // //landing Page
@@ -38,7 +39,8 @@ router.get('/login', (req,res) => {
 
 router.post("/login", passport.authenticate("local", {
         successRedirect: "/post",
-        failureRedirect: "/login"
+        failureRedirect: "/login",
+        failureFlash: true,
     }), (req, res) => {
 });
 
@@ -50,9 +52,21 @@ router.get("/logout", (req, res) => {
 });
 
 // Profile
-router.get('/profile',middleware.isLoggedIn, function(req, res, next) {
-    var user = req.user;
-    res.render('profile', {user: user});
+router.get('/user/:id',middleware.isLoggedIn, function(req, res, next) {
+    user.findById(req.params.id, (err, user) => {
+       if(err){
+           req.flash("error", "User Not Found");
+           res.redirect("/post");
+       } else {
+           post.find().where('profile.id').equals(user._id).exec((err, posts) => {
+               if(err){
+                    req.flash("error", "User Not Found");
+                    res.redirect("/post");
+               }
+               res.render('profile', {user: user, post: posts});
+           })
+       }
+    });
 });
 
 
