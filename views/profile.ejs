@@ -12,34 +12,40 @@
                   <div class="user-box">
                      <img src="<%=user.pic%>" alt="user avatar">
                   </div>
+                  <h5 class="mb-1 text-white"><a href="/user/<%= user._id %>/edit">Add/edit profile pic</a></h5>
                   <h5 class="mb-1 text-white"><%=user.name%></h5>
                   <h6 class="text-light"><%=user.gender%></h6>
-                  <h6 class="text-light"><%=user.about%></h6>
                </div>
                <div class="card-body">
                   <ul class="list-group shadow-none">
                      <li class="list-group-item">
-                        <div class="list-icon">
-                           <i class="fa fa-phone-square"></i>
-                        </div>
                         <div class="list-details">
-                           <span><%=user.contactno%></span>
+                           <span>Bio: <%=user.about%></span>
                         </div>
                      </li>
                      <li class="list-group-item">
-                        <div class="list-icon">
-                           <i class="fa fa-envelope"></i>
-                        </div>
                         <div class="list-details">
-                           <span><%=user.email%></span>
+                           <span><i class="briefcase icon"></i>Work at <%=user.work%></span>
+                        </div>
+                     </li> 
+                     <li class="list-group-item">
+                        <div class="list-details">
+                           <span><i class="phone icon"></i> <%=user.contactno%></span>
                         </div>
                      </li>
                      <li class="list-group-item">
-                        <div class="list-icon">
-                           <i class="fa fa-globe"></i>
-                        </div>
                         <div class="list-details">
-                           <span><%=user.website%></span>
+                           <span><i class="fa fa-envelope"></i> <%=user.email%></span>
+                        </div>
+                     </li>
+                     <li class="list-group-item">
+                        <div class="list-details">
+                           <span><i class="globe icon"></i> <%=user.website%></span>
+                        </div>
+                     </li>
+                     <li class="list-group-item">
+                        <div class="list-details">
+                           <span><i class="map marker alternate icon"></i>Lives in <%=user.address%></span>
                         </div>
                      </li>
                   </ul>
@@ -54,9 +60,11 @@
                   <li class="nav-item">
                      <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">TIMELINE</span></a>
                   </li>
+                  <% if(currentU && user._id.equals(currentU._id)){ %>
                   <li class="nav-item">
-                     <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit Profile</span></a>
+                     <a href="/user/<%= user._id %>/edit" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit Profile</span></a>
                   </li>
+                  <% } %>
                </ul>
                <div class="tab-content p-3">
                   <div class="tab-pane active show" id="profile">
@@ -78,72 +86,6 @@
                         <% }); %>
                         </div>
                      </div>
-                  </div>
-
-                  <div class="tab-pane" id="edit">
-                     <form>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Full name</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="text" value="Full Name">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">About Me</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="text" value="About Me">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Gender</label>
-                           <div class="col-lg-5">
-                              <select class="custom-select d-block w-100" id="country" required>
-                                 <option>Male</option>
-                                 <option>Female</option>
-                              </select>
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="email" value="letschat@garg.com">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Change profile Image</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="text" value="url">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="url" value="">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                           <div class="col-lg-9">
-                              <input class="form-control" type="text" value="" placeholder="Street">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label"></label>
-                           <div class="col-lg-6">
-                              <input class="form-control" type="text" value="" placeholder="City">
-                           </div>
-                           <div class="col-lg-3">
-                              <input class="form-control" type="text" value="" placeholder="State">
-                           </div>
-                        </div>
-                        <div class="form-group row">
-                           <label class="col-lg-3 col-form-label form-control-label"></label>
-                           <div class="col-lg-9">
-                              <input type="reset" class="btn btn-secondary" value="Cancel">
-                              <input type="button" class="btn btn-primary" value="Save Changes">
-                           </div>
-                        </div>
-                     </form>
                   </div>
                </div>
             </div>

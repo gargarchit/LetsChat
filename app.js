@@ -13,9 +13,11 @@ var bodyParser = require("body-parser"),
     user = require("./models/user"),
     postrouter = require("./routes/posts"),
     commentrouter = require("./routes/comments"),
-    authrouter = require("./routes/auth_index");
+    authrouter = require("./routes/auth_index"),
+    http = require('http').Server(app),
+    io = require('socket.io')(http);
 
-//App config
+//App config 
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -46,6 +48,12 @@ app.use((req, res, next) => {
    res.locals.success = req.flash("success");
    next();
 });
+
+// io.on('connection', function(socket){
+//   socket.on('chat message', function(msg){
+//     io.emit('chat message', msg);
+//   });
+// });
 
 app.use(authrouter);
 app.use(postrouter);

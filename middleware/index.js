@@ -9,6 +9,7 @@ middlewareObj.isLoggedIn = function isLoggedIn(req, res, next){
             return next();
             
         }
+        req.session.redirectTo = req.originalUrl;
         req.flash("error", "Please Login !!");
         res.redirect("/login");
     };
@@ -23,7 +24,7 @@ middlewareObj.checkowner = function checkowner(req,res,next) {
                     return next();
                 } else {
                     req.flash("error", "Permission Not Granted");
-                    res.redirect('back');
+                    res.redirect('/post' + req.params.id);
                 }
             }
         });  
@@ -42,7 +43,7 @@ middlewareObj.checkownercomment = function(req, res, next){
                     return next();
                 } else {
                     req.flash("error", "Permission Not Granted");
-                    res.redirect('back');
+                    res.redirect('/post' + req.params.id);
                 }
             }
         });  

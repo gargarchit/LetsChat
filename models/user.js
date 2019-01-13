@@ -4,9 +4,16 @@ var validator = require("validator");
 
 var UserSchema = new mongoose.Schema({
     name: String,
-    email: String,
-    username: String,
-    password: String
+    email: {type: String, unique: true},
+    username: {type: String, unique: true},
+    password: String,
+    pic: String,
+    about: String,
+    address: String,
+    gender: String,
+    website: String,
+    contactno : Number,
+    work: String,
 });
 
 UserSchema.plugin(passportLocalMongoose);
