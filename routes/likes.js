@@ -5,16 +5,6 @@ var  express = require("express"),
      user = require("../models/user"),
      middleware = require("../middleware");
      
-//Like
-router.get("/post/:id/#like",middleware.isLoggedIn, (req, res) => {
-    post.findById(req.params.id, (err, post) => {
-        if(err){
-            res.render("error");
-        } else {
-             res.render(''/post/' + Post._id + "/like"', {post:post});
-        }
-    });
-});
 
 //Like : Create New Like
 router.post("/post/:id/likes",middleware.isLoggedIn, (req, res) => {

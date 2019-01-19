@@ -9,16 +9,12 @@ var bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
     session = require("express-session"),
     post = require("./models/post"),
-    chat = require("./models/chat"),
     comment = require("./models/post"),
     user = require("./models/user"),
     postrouter = require("./routes/posts"),
     commentrouter = require("./routes/comments"),
     likerouter = require("./routes/likes"),
-    authrouter = require("./routes/auth_index"),
-    chatrouter = require("./routes/chat"),
-    http = require('http').Server(app),
-    io = require('socket.io')(http);
+    authrouter = require("./routes/auth_index");
 
 //App config 
 mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
