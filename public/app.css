@@ -30,6 +30,8 @@ img {
 
 .thumbnail img {
     width: 100%;
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
 .thumbnail {
@@ -43,6 +45,7 @@ img {
 #delete-form {
     display: inline;
 }
+
 
 
 

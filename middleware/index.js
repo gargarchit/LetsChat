@@ -1,6 +1,7 @@
 var comment = require("../models/comment"),
     post = require("../models/post"),
-    user = require("../models/user");
+    user = require("../models/user"),
+    like = require("../models/like");
 //Middleware
 var middlewareObj = {};
 
@@ -36,6 +37,26 @@ middlewareObj.checkowner = function checkowner(req,res,next) {
 middlewareObj.checkownercomment = function(req, res, next){
         if(req.isAuthenticated()){
             comment.findById(req.params.commentid, function(err, com){
+                if(err || !com) {
+                res.render("error");
+            } else {
+                if(com.profile.id.equals(req.user._id)){
+                    return next();
+                } else {
+                    req.flash("error", "Permission Not Granted");
+                    res.redirect('/post' + req.params.id);
+                }
+            }
+        });  
+    } else {
+        req.flash("error", "Please Login First!");
+        res.redirect('/login');
+    }
+};
+
+middlewareObj.checkownerlike = function(req, res, next){
+        if(req.isAuthenticated()){
+            like.findById(req.params.likeid, function(err, com){
                 if(err || !com) {
                 res.render("error");
             } else {

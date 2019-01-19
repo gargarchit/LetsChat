@@ -2,7 +2,11 @@
 
 <style>body{
     margin-top:70px;
-}</style>
+      }
+.btn{
+        border:0px solid transparent;
+    }
+</style>
 <div class="container">
    <div class="row">
       <div class="col-lg-4">
@@ -77,8 +81,10 @@
                               <div class="caption-full">
                                   <h4 class="pull-right"><%= moment(posts.created).fromNow() %></h4>
                                   <h2><a><%-posts.caption%></a></h2>
-                                  <a><i class="heart icon"></i></a>
-                                  <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                                  <form class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
+                                      <button id="lbt" class="btn btn-outline-primary" ng-click="levelL()"><i class="heart icon"></i><%=posts.like.length%></button>
+                                      <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                                  </form>
                               </div>
                               <hr class="mb-4">
                               <hr class="mb-4">

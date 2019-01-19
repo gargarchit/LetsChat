@@ -9,10 +9,6 @@ var express = require("express"),
 //     res.render('index');
 // });
 
-router.get('/chat', (req, res) => {
-  res.render('chat');
-});
-
 // Form SignUp
 router.get('/signup', (req,res) => {
     res.render('signup');

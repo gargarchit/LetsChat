@@ -37,7 +37,7 @@ router.get('/createpost',middleware.isLoggedIn, (req,res) => {
 
 //Show Post on Click
 router.get('/post/:id', (req,res) => {
-    post.findById(req.params.id).populate('comments').exec((err, foundpost) => {
+    post.findById(req.params.id).populate('comments').populate('like').exec((err, foundpost) => {
         if(err || !foundpost) {
             res.render("error");
         } else {
@@ -79,16 +79,6 @@ router.delete('/post/:id', middleware.checkowner ,(req,res) => {
         }
     });
 });
-
-// router.post("likepost");
-
-// likepost: (req, res, next) => {
-//         post.findById(req.body.post_id).then((post)=> {
-//             return post.likes().then(()=>{
-//                 return res.json({msg: "Done"});
-//             });
-//         }).catch(next);
-// },
 
 
 module.exports = router;

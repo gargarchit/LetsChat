@@ -20,13 +20,17 @@
     </div>
     <div class="well">
       <div class="text-right">
+          <a class="btn btn-success" href = "/post/<%= post._id %>/like"><i class="heart icon"></i><%= post.like.length %> Like</a>
           <a class="btn btn-success" href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a>
       </div>
       <hr>
+      <% if (post.comments.length === 0) { %>
+        <em style="color: grey;">No comments yet. Write something....</em>
+      <% } %>
       <% post.comments.forEach((comment) => { %>
         <div class="row">
           <div class="col-md-12">
-            <strong> <a href = "../user/<%= comment.profile.id%>"><%= comment.profile.name %></a> </strong>
+            <strong> <a href = "../user/<%= comment.profile.id%>"><%= comment.profile.name %><em> @ <%= comment.profile.username %> </em></a> </strong>
             <span class="pull-right"><%= moment(comment.created).fromNow() %></span>
               <div>
                 <%= comment.text %>

@@ -1,7 +1,12 @@
 <% include partials/header.ejs %>
+<style>
+    .btn{
+        border:0px solid transparent;
+    }
+</style>
 <div class="jumbotron" style="margin-top: -60px;">
     <div class="container">
-      <h1 class="display-3">Welcome to LetsChat</h1>
+      <h1 class="display-3"><i class="paper plane icon"></i> Welcome to LetsChat</h1>
       <h3 class="display-4">Feed Page</h3>
     </div>
 </div>
@@ -16,8 +21,10 @@
                 <p>
                     By<a href = "user/<%= posts.profile.id%>"> <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em></a>
                 </p>
-                <a><i class="heart icon"></i></a>
-                <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                <form class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
+                    <button id="lbt" class="btn btn-outline-primary" ng-click="levelL()"><i class="heart icon"></i><%=posts.like.length%></button>
+                    <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                </form>
             </div>
             <hr class="mb-4">
             <hr class="mb-4">
@@ -25,5 +32,17 @@
         <% }); %>
     </div>
 </div>
+<script>
+// $(document).ready(function()  {
 
+//     $('lbt').click(function () {
+
+//       $("lbt").removeClass('btn btn-outline-primary').addClass('btn btn-outline-danger');
+//       }
+//     })
+
+
+// })
+
+</script>
 <% include partials/footer.ejs %>

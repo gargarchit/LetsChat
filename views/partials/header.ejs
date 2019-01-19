@@ -20,6 +20,7 @@
     </head>
     <body>
         <!-- Navbar -->
+        
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <span></span>
             <a class="navbar-brand" href="/post"><i class="paper plane icon"></i>LetsChat</a>
@@ -36,7 +37,7 @@
                 <a class="btn btn-dark" href="/login"><i class="sign in icon"></i> Login</a>
                 <a class="btn btn-dark" href="/signup"><i class="add user icon"></i> SignUp</a>
                 <% } else { %>
-                <a class="btn btn-dark" href="#"><i class="rocketchat icon"></i>Chat Room</a>
+                <a class="btn btn-dark" href="/chat"><i class="rocketchat icon"></i>Chat Room</a>
                 <a class="btn btn-dark" href = "/createpost"><i class="edit icon"></i>Create Post</a>
                 <a class="btn btn-dark" href="../user/<%=currentuser._id%>">Hi <%= currentuser.name %>!</a>
                 <a class="btn btn-dark" href="/logout"><i class="sign out icon"></i> Logout</a>

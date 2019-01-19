@@ -9,11 +9,14 @@ var bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
     session = require("express-session"),
     post = require("./models/post"),
+    chat = require("./models/chat"),
     comment = require("./models/post"),
     user = require("./models/user"),
     postrouter = require("./routes/posts"),
     commentrouter = require("./routes/comments"),
+    likerouter = require("./routes/likes"),
     authrouter = require("./routes/auth_index"),
+    chatrouter = require("./routes/chat"),
     http = require('http').Server(app),
     io = require('socket.io')(http);
 
@@ -49,15 +52,12 @@ app.use((req, res, next) => {
    next();
 });
 
-// io.on('connection', function(socket){
-//   socket.on('chat message', function(msg){
-//     io.emit('chat message', msg);
-//   });
-// });
-
 app.use(authrouter);
 app.use(postrouter);
 app.use(commentrouter);
+app.use(likerouter);
+
+
 app.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 
 });
