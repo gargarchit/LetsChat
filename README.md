@@ -8,4 +8,4 @@ The basic features app which will include :
 |Posts ( with Likes/comments )|  Done  |
 |Chats                        |        |
 |RESTful                      |  Done  |
-|Depolyed on Heruku           |        |
+|Depolyed on Heruku           |  Done  |
