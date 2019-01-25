@@ -1,7 +1,7 @@
 var bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
     expressSanitizer = require("express-sanitizer"),
-    mongoose = require("mongoose"),
+    mongoose = require("mongoose"), 
     express = require("express"),
     flash = require("connect-flash"),
     app = express(),
@@ -17,7 +17,8 @@ var bodyParser = require("body-parser"),
     authrouter = require("./routes/auth_index");
 
 //App config 
-mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
+mongoose.connect("mongodb://garg:garg123@ds047305.mlab.com:47305/letschat", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 app.use(bodyParser.urlencoded({extended : true}));
