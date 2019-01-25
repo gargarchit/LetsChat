@@ -17,8 +17,8 @@ var bodyParser = require("body-parser"),
     authrouter = require("./routes/auth_index");
 
 //App config 
-// mongoose.connect("mongodb://localhost/Letschat", { useNewUrlParser: true });
-mongoose.connect("mongodb://garg:garg123@ds047305.mlab.com:47305/letschat", { useNewUrlParser: true });
+var dburl = process.env.DBURL || "mongodb://localhost/Letschat"
+mongoose.connect(dburl, { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 app.use(bodyParser.urlencoded({extended : true}));
