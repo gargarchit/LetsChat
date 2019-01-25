@@ -23,7 +23,7 @@
                 </p>
                 <form class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
                     <button id="lbt" class="btn btn-outline-primary" ng-click="levelL()"><i class="heart icon"></i><%=posts.like.length%></button>
-                    <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                    <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i><%=posts.comments.length%></a>
                 </form>
             </div>
             <hr class="mb-4">
