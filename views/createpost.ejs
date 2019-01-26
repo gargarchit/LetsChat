@@ -2,7 +2,7 @@
 
 <div class="ui main text container segment" style="margin-top: -100px;">
     <div class="ui huge header">New Post</div>
-    <form class="ui form" action="/post" method="POST">
+    <form class="ui form" action="/post" method="POST" enctype="multipart/form-data">
         <div class="field">
             <label>Caption</label>
             <div class="ui left icon input">
@@ -14,7 +14,7 @@
             <label>Image</label>
             <div class="ui left icon input">
                 <i class="image icon"></i>
-                <input type="text" name="Post[image]" placeholder="Image URL">
+                <input type="file" id="image" name="image" accept="image/*" required>
             </div>
         </div>
         <button class="ui fluid large teal button">Create Post</button>
@@ -23,5 +23,6 @@
         <a href = "/post"><i class="backward icon"></i> Go back</a>
     </div>
 </div>
+
 
 <% include partials/footer.ejs %>

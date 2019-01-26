@@ -3,7 +3,29 @@ var express = require("express"),
     passport = require("passport"),
     user = require("../models/user"),
     post = require("../models/post"),
-    middleware = require("../middleware");
+    middleware = require("../middleware"),
+    multer = require('multer'),
+
+storage = multer.diskStorage({
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    }
+});
+var imageFilter = function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only jpg, jpeg, png, gif format file accepted'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter});
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: 'letschat', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+    
 // //landing Page
 // router.get('/', (req,res) => {
 //     res.render('index');
@@ -85,7 +107,8 @@ router.get("/user/:id/edit", middleware.isLoggedIn, (req, res) => {
   });
 });
  
-// update profile
+//update profile
+
 router.put("/user/:id",middleware.isLoggedIn, (req, res) => {
   user.findByIdAndUpdate(req.params.id, req.body.User, {new: true}, (err, updatedUser) => {
     if (err) {

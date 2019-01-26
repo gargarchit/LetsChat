@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var postSchema = new mongoose.Schema({
    caption: String,
    image: String,
+   imageId: String,
    created: {type: Date, default: Date.now},
    profile: {
       id: {

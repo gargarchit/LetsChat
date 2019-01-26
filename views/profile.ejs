@@ -14,7 +14,7 @@
             <div class="card">
                <div class="card-body text-center bg-dark rounded-top">
                   <div class="user-box">
-                     <img src="<%=user.pic%>" alt="user avatar">
+                     <img src="<%=user.image%>" alt="user avatar">
                   </div>
                   <h5 class="mb-1 text-white"><a href="/user/<%= user._id %>/edit">Add/edit profile pic</a></h5>
                   <h5 class="mb-1 text-white"><%=user.name%></h5>
@@ -83,7 +83,7 @@
                                   <h2><a><%-posts.caption%></a></h2>
                                   <form class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
                                       <button id="lbt" class="btn btn-outline-primary" ng-click="levelL()"><i class="heart icon"></i><%=posts.like.length%></button>
-                                      <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i>View Comment</a>
+                                      <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i><%=posts.comments.length%></a>
                                   </form>
                               </div>
                               <hr class="mb-4">
