@@ -1,17 +1,58 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Letschat</title>
-</head>
-
-<body>
-  <p>Welcome to the chat app</p>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/index.js"></script>
-</body>
-
-</html>
+<% include partials/header.ejs %>
+    <div class="jumbotron" style="margin-top: -60px;">
+      <div class="container">
+        <h1 class="display-3"><i class="paper plane icon"></i> Welcome to LetsChat</h1>
+        <h3 class="display-4">Chat Room</h3>
+      </div>
+    </div>
+<div class="container">
+  <div class="col-md-9">
+    <div class="well">
+      <div class="row">
+          <div class="col-md-12">
+            <ul id="messages"></ul>
+            <form action="">
+              <div class="form-row align-items-center">
+                <label for="m" class="col-sm-1 col-form-label"><strong><em>Message:</em></strong></label>
+                <div class="col-sm-9 my-1">
+                  <input type="text" class="form-control" id="m" autocomplete="off" />
+                </div>
+                <div class="col-auto my-1">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+            <hr class="mb-4">
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+    <link href="/chat.css" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('chat message', function(message){
+          var li = jQuery('<li></li>');
+          li.text(',message.text');
+          jQuery('#messages').append(li);
+        });
+      });
+      // jQuery('#message-form').on('submit', function (e) {
+      //   e.preventDefault();
+      //   var messageTextbox = jQuery('[name=message]');
+      //   socket.emit('createMessage', {
+      //     from: 'User',
+      //     text: messageTextbox.val()
+      //   }, function () {
+      //     messageTextbox.val('')
+      //   });
+      // });
+    </script>

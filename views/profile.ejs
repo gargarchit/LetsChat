@@ -14,7 +14,15 @@
             <div class="card">
                <div class="card-body text-center bg-dark rounded-top">
                   <div class="user-box">
-                     <img src="<%=user.image%>" alt="user avatar">
+                     <% if(!user.image & user.gender === "Male"){ %>
+                        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/malecostume-512.png" alt="user avatar">
+                     <% } else if(!user.image && user.gender === "Female"){ %>
+                        <img src="https://i1.wp.com/nofiredrills.com/wp-content/uploads/2016/10/myavatar.png?fit=400%2C400&ssl=1" alt="user avatar">
+                     <% } else if(!user.image){ %>
+                        <img src="http://icons.iconarchive.com/icons/iconsmind/outline/512/Add-User-icon.png" alt="user avatar">
+                     <% } else { %>
+                        <img src="<%=user.image%>" alt="user avatar">
+                     <% } %>
                   </div>
                   <h5 class="mb-1 text-white"><a href="/user/<%= user._id %>/edit">Add/edit profile pic</a></h5>
                   <h5 class="mb-1 text-white"><%=user.name%></h5>

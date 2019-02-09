@@ -30,7 +30,6 @@ cloudinary.config({
 // router.get('/', (req,res) => {
 //     res.render('index');
 // });
-
 // Form SignUp
 router.get('/signup', (req,res) => {
     res.render('signup');

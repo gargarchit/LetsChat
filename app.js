@@ -14,8 +14,11 @@ var bodyParser = require("body-parser"),
     postrouter = require("./routes/posts"),
     commentrouter = require("./routes/comments"),
     likerouter = require("./routes/likes"),
-    authrouter = require("./routes/auth_index");
+    authrouter = require("./routes/auth_index"),
+    http = require('http').Server(app),
+    io = require('socket.io')(http);
 
+const {generateMessage} = require('./routes/message');
 //App config 
 var dburl = process.env.DBURL || "mongodb://localhost/Letschat"
 mongoose.connect(dburl, { useNewUrlParser: true });
@@ -48,13 +51,24 @@ app.use((req, res, next) => {
    res.locals.success = req.flash("success");
    next();
 });
-
 app.use(authrouter);
 app.use(postrouter);
 app.use(commentrouter);
 app.use(likerouter);
+// Chat Routes
+app.get('/chat', function(req, res){
+  res.render('chat.ejs');
+});
 
+io.on('connection', function(socket){
 
-app.listen(process.env.PORT, process.env.IP, () => {
+    socket.on('chat message', function(msg){
+        io.emit('chat message', generateMessage(msg.from, msg.text));
+  });
+});
+app.get("*",(req, res)=> {
+  res.render('error');
+});
+http.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 
 });
