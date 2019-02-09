@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font: 13px Helvetica, Arial margin-top:100px}
-form { padding: 3px; position: fixed; bottom: 0; width: 60%; }
+form { padding: 3px; position: fixed; bottom: 50px; width: 60%; }
 #messages { list-style-type: none; margin: 0; padding: 0; }
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }

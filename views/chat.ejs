@@ -1,36 +1,49 @@
 <% include partials/header.ejs %>
-    <div class="jumbotron" style="margin-top: -60px;">
-      <div class="container">
-        <h1 class="display-3"><i class="paper plane icon"></i> Welcome to LetsChat</h1>
-        <h3 class="display-4">Chat Room</h3>
-      </div>
-    </div>
+<div class="jumbotron" style="margin-top: -60px;">
+  <div class="container">
+    <h1 class="display-3"><i class="paper plane icon"></i> Welcome to LetsChat</h1>
+    <h3 class="display-4">Chat Room - LoggedIn as : <em><%=user.name%> @ <%=user.username%></em></h3>
+  </div>
+</div>
 <div class="container">
   <div class="col-md-9">
     <div class="well">
       <div class="row">
           <div class="col-md-12">
-            <ul id="messages"></ul>
-            <form action="">
-              <div class="form-row align-items-center">
-                <label for="m" class="col-sm-1 col-form-label"><strong><em>Message:</em></strong></label>
-                <div class="col-sm-9 my-1">
-                  <input type="text" class="form-control" id="m" autocomplete="off" />
-                </div>
-                <div class="col-auto my-1">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </form>
-            <hr class="mb-4">
+            <ul id="messages">
+              <li>
+                <em>Welcome <strong><%=user.name%></strong> to LetsChat's Chat Room</em>
+              </li>
+            </ul>
           </div>
         </div>
     </div>
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col-md-12">
+          <form action="" id="message-form">
+            <div class="form-row align-items-center">
+              <label for="m" class="col-sm-1 col-form-label"><strong><em>Message:</em></strong></label>
+              <div class="col-sm-9 my-1">
+                <input name="message" type="text" class="form-control" id="m" autofocus autocomplete="off" />
+              </div>
+              <div class="col-auto my-1">
+                <button class="btn btn-primary"><i class="paper plane icon"></i> Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
   </div>
 </div>
+
     <link href="/chat.css" type="text/css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous">
+    </script>
     <script>
       $(function () {
         var socket = io();
@@ -40,19 +53,9 @@
           return false;
         });
         socket.on('chat message', function(message){
-          var li = jQuery('<li></li>');
-          li.text(',message.text');
-          jQuery('#messages').append(li);
+          $('#messages').append($('<li>').text(message));
+          window.scrollTo(0, document.body.scrollHeight);
         });
-      });
-      // jQuery('#message-form').on('submit', function (e) {
-      //   e.preventDefault();
-      //   var messageTextbox = jQuery('[name=message]');
-      //   socket.emit('createMessage', {
-      //     from: 'User',
-      //     text: messageTextbox.val()
-      //   }, function () {
-      //     messageTextbox.val('')
-      //   });
-      // });
+    });
     </script>
+<% include partials/footer.ejs %>
