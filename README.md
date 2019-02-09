@@ -2,7 +2,7 @@
       <em>LetsChat</em>
   <br>
 </h1>
-The LetsChat is a Web-app relying on Node.js a JavaScript runtime build on Chrome's V8 JavaScript engine. In this project, I tried to built some of the features a Social Networking Site must have from Scratch using Node.js Backend.<br>
+The LetsChat is a Web-app relying on Node.js a JavaScript runtime build on Chrome's V8 JavaScript engine. In this project, I tried to built some of the features a Social Networking Site must have from Scratch using Node.js Backend.<br><br>
 
 <img width="1800" src="public/Screenshot_2019-02-09 LetsChat Home.jpg">
 
@@ -17,6 +17,7 @@ The LetsChat is a Web-app relying on Node.js a JavaScript runtime build on Chrom
   
   
 ## Before Starting
+  - [Checkout App](https://letschat-garg.herokuapp.com/)
   - **Most Important** for before commit 47 while running app use **/post** route at the end of **/** not **/** directly of route otherwise a bug will appear or cannot get /
 
 ## Getting Started
