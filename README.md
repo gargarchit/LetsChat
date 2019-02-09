@@ -6,6 +6,6 @@ The basic features app which will include :
 |User Profiles (SignUp/Login) |  Done  |
 |Feed                         |  Done  |
 |Posts ( with Likes/comments )|  Done  |
-|Chats                        |        |
+|Chats                        |  Done  |
 |RESTful                      |  Done  |
 |Depolyed on Heruku           |  Done  |

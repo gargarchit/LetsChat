@@ -1,0 +1,73 @@
+<!-- Header -->
+<html>
+    <head lang="en">
+        <meta charset="utf-8">
+		<meta name="description" content="LetsChat Social Networking Site">
+        <meta name="keywords" content="NodeJS, MongoDB, BootStrap, Social Sites, Letschat">
+        <meta name="author" content="Archit">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--<meta http-equiv="refresh" content="120">-->
+        <title>
+            LetsChat Home
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+        <link href="/cover.css" type="text/css" rel="stylesheet">
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        </style>
+    </head>
+    <body class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand"><a class="navbar-brand" href="/post"><i class="paper plane icon"></i>LetsChat</a></h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <% if(!currentuser){ %>
+                    <a class="nav-link active" href="/login"><i class="sign in icon"></i> Login</a>
+                    <a class="nav-link active" href="/signup"><i class="add user icon"></i> SignUp</a>
+                    <% } else { %>
+                    <a class="nav-link active" href="../user/<%=currentuser._id%>">Hi <%= currentuser.name %>!</a>
+                    <a class="nav-link" href="/logout"><i class="sign out icon"></i> Logout</a>
+                    <% } %>    
+                </nav>
+            </div>
+            </header>
+    
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading"><i class="paper plane icon"></i>LetsChat</h1>
+                <p class="lead"><strong>CONNECTIONS - The FUTURE ASSETS</strong></p>
+                <p class="lead">
+                  <strong>Coming together is a beginning, staying together is progress, and working together is success.</strong>
+                </p>
+                <% if(!currentuser){ %>
+                <% } else { %>
+                <p class="lead">
+                    <a href="/post"><i class="camera retro icon"></i><strong>Check Feed</strong></a>
+                </p>
+                <p class="lead">
+                    <a href="/chat"><i class="rocketchat icon"></i><strong>Chat Room</strong></a>
+                </p>
+                <% } %>
+            </main>
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                  <p><a href="https://www.linkedin.com/in/garg4">ARCHIT&nbsp;<i class="copyright outline icon"></i>2019</a></p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

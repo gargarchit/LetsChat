@@ -27,9 +27,9 @@ cloudinary.config({
 });
     
 // //landing Page
-// router.get('/', (req,res) => {
-//     res.render('index');
-// });
+router.get('/', (req,res) => {
+    res.render('home',{user: req.user});
+});
 // Form SignUp
 router.get('/signup', (req,res) => {
     res.render('signup');
