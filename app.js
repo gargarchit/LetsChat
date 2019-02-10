@@ -7,9 +7,6 @@ var bodyParser = require("body-parser"),
     app = express(),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    session = require("express-session"),
-    post = require("./models/post"),
-    comment = require("./models/post"),
     user = require("./models/user"),
     postrouter = require("./routes/posts"),
     commentrouter = require("./routes/comments"),
@@ -18,6 +15,7 @@ var bodyParser = require("body-parser"),
     middleware = require("./middleware"),
     http = require('http').Server(app),
     io = require('socket.io')(http);
+    
 //App config 
 var dburl = process.env.DBURL || "mongodb://localhost/Letschat"
 mongoose.connect(dburl, { useNewUrlParser: true });
@@ -30,6 +28,7 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(flash());
 
+// Moment.js for Timestamp
 app.locals.moment = require('moment');
 
 app.use(require("express-session")({
@@ -54,6 +53,8 @@ app.use(authrouter);
 app.use(postrouter);
 app.use(commentrouter);
 app.use(likerouter);
+
+
 // Chat Routes
 app.get('/chat',middleware.isLoggedIn, function(req, res){
   res.render('chat.ejs', {user:req.user});
@@ -64,9 +65,12 @@ io.on('connection', function(socket){
         io.emit('chat message', msg);
   });
 });
+
+// Unhandled routes
 app.get("*",(req, res)=> {
   res.render('error');
 });
+
 http.listen(process.env.PORT, process.env.IP, () => {
    console.log('Server started'); 
 });

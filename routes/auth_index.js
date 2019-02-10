@@ -26,10 +26,11 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
     
-// //landing Page
+//Home Page
 router.get('/', (req,res) => {
     res.render('home',{user: req.user});
 });
+
 // Form SignUp
 router.get('/signup', (req,res) => {
     res.render('signup');
@@ -107,7 +108,6 @@ router.get("/user/:id/edit", middleware.isLoggedIn, (req, res) => {
 });
  
 //update profile
-
 router.put("/user/:id",middleware.isLoggedIn, (req, res) => {
   user.findByIdAndUpdate(req.params.id, req.body.User, {new: true}, (err, updatedUser) => {
     if (err) {
