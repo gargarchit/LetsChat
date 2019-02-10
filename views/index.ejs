@@ -21,9 +21,9 @@
                 <p>
                     By<a href = "user/<%= posts.profile.id%>"> <%= posts.profile.name %> <em> @ <%= posts.profile.username %> </em></a>
                 </p>
-                <form class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
-                    <button id="lbt" class="btn btn-outline-primary" ng-click="levelL()"><i class="heart icon"></i><%=posts.like.length%></button>
-                    <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i><%=posts.comments.length%></a>
+                <form id="myForm" class="ui form" action="/post/<%= posts._id %>/likes/"method="POST">
+                    <button class="btn btn-outline-primary"><i class="heart icon"></i><%=posts.like.length%></button>
+                    <a class="reply" href = "/post/<%= posts._id %>"><i class="comments icon"></i></a>
                 </form>
             </div>
             <hr class="mb-4">
@@ -32,17 +32,4 @@
         <% }); %>
     </div>
 </div>
-<script>
-// $(document).ready(function()  {
-
-//     $('lbt').click(function () {
-
-//       $("lbt").removeClass('btn btn-outline-primary').addClass('btn btn-outline-danger');
-//       }
-//     })
-
-
-// })
-
-</script>
 <% include partials/footer.ejs %>

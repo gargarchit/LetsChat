@@ -20,8 +20,11 @@
     </div>
     <div class="well">
       <div class="text-right">
-          <a class="btn btn-success" href = "/post/<%= post._id %>/like"><i class="heart icon"></i><%= post.like.length %> Like</a>
-          <a class="btn btn-success" href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a>
+          <form id="myForm" class="ui form" action="/post/<%= post._id %>/likes/"method="POST">
+            <button class="btn btn-outline-primary"><i class="heart icon"></i><%= post.like.length %></button>
+            <a class="btn btn-default" href = "/post/<%= post._id %>/like">View Likes</a>
+            <a class="btn btn-default" href = "/post/<%= post._id %>/comments/create"><i class="comment icon"></i> Add New Comment</a>
+          </form>
       </div>
       <hr>
       <% if (post.comments.length === 0) { %>
