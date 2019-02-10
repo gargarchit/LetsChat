@@ -1,11 +1,20 @@
 
 body {
-      background-color: #DADADA;
+      background-color: #d4efdf;
       margin-top:100px;
 }
 body > .grid {
       height: 100%;
     }
+.jumbotron {
+    margin-top: -60px; 
+    background : url('/home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron .container{
+    color: white
+}
 .image {
       margin-top: -100px;
     }
@@ -46,8 +55,13 @@ img {
     display: inline;
 }
 
-
-
+.navbar .navbar-brand{
+    margin-left:10%;
+}
+.navbar .collapse{
+    margin-left:10%;
+    margin-right:10%;
+}
 
 .thumbnail img {
     width: 100%;
