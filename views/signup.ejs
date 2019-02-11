@@ -27,7 +27,10 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="usernameHelpBlock" required>
+            <small id="usernameHelpBlock" class="form-text text-muted">
+              Your Username must contain letters(1 letter required), numbers or _ length must be between 4 to 16.
+            </small>
             <div class="invalid-feedback" style="width: 100%;">
               Your username is required.
             </div>

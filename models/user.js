@@ -19,7 +19,7 @@ var UserSchema = new mongoose.Schema({
             unique: true, 
             trim: true, 
             minlength: 4,
-            match: [/^[a-zA-Z0-9]+$/, 'is invalid'], 
+            match: [/^[a-z]{1}[A-Za-z0-9_]{3,16}$/, 'is invalid'], 
             index: true
         
     },
