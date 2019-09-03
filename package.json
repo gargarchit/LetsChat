@@ -25,7 +25,7 @@
     "method-override": "^3.0.0",
     "mocha": "^6.1.4",
     "moment": "^2.24.0",
-    "mongoose": "^5.5.11",
+    "mongoose": "^5.6.12",
     "multer": "^1.4.1",
     "nodemailer": "^6.2.1",
     "passport": "^0.4.0",
