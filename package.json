@@ -33,6 +33,6 @@
     "passport-local-mongoose": "^5.0.1",
     "pusher": "^2.2.0",
     "socket.io": "^2.2.0",
-    "validator": "^11.0.0"
+    "validator": "^12.0.0"
   }
 }
