@@ -18,7 +18,6 @@ The LetsChat is a Web-app relying on Node.js a JavaScript runtime build on Chrom
   
 ## Before Starting
   - [Checkout App](https://letschat-garg.herokuapp.com/)
-  - **Most Important** for before commit 47 while running app use **/post** route at the end of **/** not **/** directly of route otherwise a bug will appear or cannot get /
 
 ## Getting Started
 
