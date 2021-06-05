@@ -16,7 +16,7 @@ The LetsChat is a Web-app relying on Node.js a JavaScript runtime build on Chrom
   - Uploading Photo, Add Caption, update, delete
   
   
-  - [Checkout App](https://letschat-garg.herokuapp.com/)
+  - [Checkout App](https://letschatproject.herokuapp.com)
 
 ## Getting Started
 
